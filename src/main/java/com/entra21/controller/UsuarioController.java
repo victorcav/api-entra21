@@ -1,5 +1,6 @@
 package com.entra21.controller;
 
+import com.entra21.controller.dto.UsuarioDTO;
 import com.entra21.model.Usuario;
 import com.entra21.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ public class UsuarioController {
     UsuarioRepository usuarioRepository;
 
     @GetMapping
-    @ResponseBody
-    public List<Usuario> listar(){
-        return usuarioRepository.findAll();
+    public List<UsuarioDTO> listar(){
+        List<Usuario> usuarioList = usuarioRepository.findAll();
+        return UsuarioDTO.converter(usuarioList);
     }
 
     @PostMapping
